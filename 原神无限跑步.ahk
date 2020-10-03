@@ -16,7 +16,7 @@ dcKey = g 		;lag switch键
 	Z键:lag switch, 超时自动连网
 */
 
-v::
+*$v::
 repeatRunning *= -1
 if(repeatRunning = -1)
 {
@@ -32,6 +32,7 @@ if(repeatRunning = -1)
 		runForOneTime()
 	}
 }
+return
 
 dcIng := -1
 
@@ -39,7 +40,7 @@ runForOneTime()
 {
 	Send {w down}
 	SendInput {RButton}
-	Sleep, 900
+	Sleep, 850
 	Send {w up}
 }
 
