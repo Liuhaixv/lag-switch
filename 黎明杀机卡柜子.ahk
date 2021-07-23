@@ -1,42 +1,48 @@
 *$F1::Suspend
 
+global isDisconnected := false
 
 connect(){
-run %A_ScriptDir%\NetDisabler_x64.exe /E
+	SoundBeep, 450, 150
+	run C:\Program Files\NetBalancer\nbcmd.exe settings reset true, ,hide
+	isDisconnected := false
 }
 
 disconnect(){
-run %A_ScriptDir%\NetDisabler_x64.exe /D
+	SoundBeep, 1000, 150
+	run C:\Program Files\NetBalancer\nbcmd.exe settings priorities edit deadbydaylight-win64-shipping.exe  Normal Limited 90 90 true, ,hide
+	isDisconnected := true
 }
 
-/*
-一键断网，2秒后开始重连
-*/
-*$WheelDown::
-disconnect()
-SetTimer, *$WheelUp, -2000
-return
+;断网/联网
+switch() {
+	if(isDisconnected == false) {
+		disconnect()
+	} else {
+		connect()
+	}
+}
 
-/*
-一键断网，2秒后开始重连
-*/
+checkConnection() {
+	if(isDisconnected == false) {
+		SoundBeep, 450, 150
+	} else {
+		SoundBeep, 1000, 150
+	}
+}
+
 *$C::
-disconnect()
-SetTimer, *$WheelUp, -2000
-return
+switch()
+Return
 
-*$WheelUp::
-connect()
-return
+*$R::
+checkConnection()
+Return
 
-/*
-一键卡柜子
-*/
 *$V::
 Send {Space}
-disconnect()
-SetTimer, connect, -2000
-return
+connect()
+Return
 
 Progress, Off
-Return 
+Return
