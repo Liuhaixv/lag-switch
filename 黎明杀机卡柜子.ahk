@@ -3,9 +3,9 @@ global uploadBlocked := false
 global downloadBlocked := false
 global counter := new SecondCounter
 
-;⇅
-class SecondCounter {
+class SecondCounter {	
     __New() {
+		this.str := ""
         this.interval := 1000
         this.count := 0
         ; Tick() has an implicit parameter "this" which is a reference to
@@ -13,11 +13,14 @@ class SecondCounter {
         ; "this" and the method to call:
         this.timer := ObjBindMethod(this, "Tick")
     }
-    Start() {
+    Start(_str) {
+		this.str := _str
         ; Known limitation: SetTimer requires a plain variable reference.
         timer := this.timer
         SetTimer % timer, % this.interval
-        ToolTip % this.count, % A_ScreenWidth / 2, % A_ScreenHeight / 2
+		this.count++
+		text := this.str . this.count
+        ToolTip %text%, % A_ScreenWidth / 2, % A_ScreenHeight / 2
     }
     Stop() {
         ; To turn off the timer, we must pass the same object as before:
@@ -29,11 +32,14 @@ class SecondCounter {
     }
     ; In this example, the timer calls this method:
     Tick() {
-        ToolTip % ++this.count, % A_ScreenWidth / 2, % A_ScreenHeight / 2
+		this.count++
+		text := this.str . this.count
+        ToolTip %text%, % A_ScreenWidth / 2, % A_ScreenHeight / 2
     }
 }
 
 connect(){
+	counter.Stop()
 	SoundBeep, 450, 150
 	run C:\Program Files\NetBalancer\nbcmd.exe settings reset true, ,hide
 	isDisconnected := false
@@ -74,10 +80,9 @@ blockAll(){
 switchBlockUpload(){
 	if(uploadBlocked == false) {
 		blockUpload()
-		counter.Start()
+		counter.Start("↑ ")
 	} else {
 		connect()
-		counter.Stop()
 	}
 	Return
 }
@@ -85,10 +90,9 @@ switchBlockUpload(){
 switchBlockDownload(){
 	if(downloadBlocked == false) {
 		blockDownload()
-		counter.Start()
+		counter.Start("↓ ")
 	} else {
 		connect()
-		counter.Stop()
 	}
 	Return
 }
@@ -96,10 +100,9 @@ switchBlockDownload(){
 switchBlockAll(){
 	if(downloadBlocked == false || uploadBlocked == false) {
 		blockAll()
-		counter.Start()
+		counter.Start("↑↓ ")
 	} else {
 		connect()
-		counter.Stop()
 	}
 	Return
 }
