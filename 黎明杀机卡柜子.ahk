@@ -9,14 +9,10 @@ class SecondCounter {
 		this.str := ""
         this.interval := 1000
         this.count := 0
-        ; Tick() has an implicit parameter "this" which is a reference to
-        ; the object, so we need to create a function which encapsulates
-        ; "this" and the method to call:
         this.timer := ObjBindMethod(this, "Tick")
     }
-    Start(_str) {
-		this.str := _str
-        ; Known limitation: SetTimer requires a plain variable reference.
+    Start(prefix_str) {
+		this.str := prefix_str
         timer := this.timer
         SetTimer % timer, % this.interval
 		this.count++
@@ -24,14 +20,13 @@ class SecondCounter {
         ToolTip %text%, % A_ScreenWidth / 2, % A_ScreenHeight / 2
     }
     Stop() {
-        ; To turn off the timer, we must pass the same object as before:
         timer := this.timer
         SetTimer % timer, Off
 		;隐藏工具栏
+		;hide tooltip
         ToolTip
 		this.count := 0
     }
-    ; In this example, the timer calls this method:
     Tick() {
 		this.count++
 		if(this.count >= timeLimit) {
@@ -129,7 +124,7 @@ init() {
 init()
 
 ;绑定按键
-
+;bindings
 *$F1::Suspend
 
 *$C::
