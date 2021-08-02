@@ -2,6 +2,7 @@ global isDisconnected := false
 global uploadBlocked := false
 global downloadBlocked := false
 global counter := new SecondCounter
+global timeLimit := 120
 
 class SecondCounter {	
     __New() {
@@ -33,6 +34,11 @@ class SecondCounter {
     ; In this example, the timer calls this method:
     Tick() {
 		this.count++
+		if(this.count >= timeLimit) {
+			connect()
+			this.Stop()
+			return
+		}
 		text := this.str . this.count
         ToolTip %text%, % A_ScreenWidth / 2, % A_ScreenHeight / 2
     }
