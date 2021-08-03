@@ -3,7 +3,7 @@
 
 ### 需要的软件
   * [AutoHotKey](https://www.autohotkey.com/)(运行ahk脚本)
-  * NetBalancer(用于限制网络流量)
+  * [NetBalancer](https://netbalancer.com/)(用于限制网络流量)
 
 ### 常量
   * `nbcmdDir`:NetBalancer的根目录,必须设置正确,并且确保NetBalancer处于工作状态(激活或试用),否则脚本无法正确运行
@@ -22,7 +22,7 @@ lag switch for Dead By Daylight(works for other softwares too). With both audito
 
 ### Requirements
   * [AutoHotKey](https://www.autohotkey.com/)(to run .ahk scripts)
-  * NetBalancer(Control network traffic of game)
+  * [NetBalancer](https://netbalancer.com/)(Control network traffic of game)
 
 ### constant Variable
   * `nbcmdDir`:root direction of NetBalancer, must be set correctly.Also you need to ensure that NB is in working stage(activated or in trial), or the script will not work.
