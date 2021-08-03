@@ -2,7 +2,7 @@
 一键断线,默认120秒后开始重连网络,可自行修改脚本,带有声音和视觉反馈
 
 ### 需要的软件
-  * AutoHotKey(脚本)
+  * [AutoHotKey](https://www.autohotkey.com/)(运行ahk脚本)
   * NetBalancer(用于限制网络流量)
 
 ### 常量
@@ -20,10 +20,10 @@
 lag switch for Dead By Daylight(works for other softwares too). With both auditory  and visual feedback, you can easily tell if the game was lag-switched or how long it has been.
 
 ### Requirements
-  * AutoHotKey(Script)
+  * [AutoHotKey](https://www.autohotkey.com/)(to run .ahk scripts)
   * NetBalancer(Control network traffic of game)
 
-### Constant
+### constant Variable
   * `nbcmdDir`:root direction of NetBalancer, must be set correctly.Also you need to ensure that NB is in working stage(activated or in trial), or the script will not work.
   * `timeLimit`:max time before auto-reconnecting, default by 120 sec
 ### Hotkeys
