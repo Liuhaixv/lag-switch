@@ -5,6 +5,9 @@
   * AutoHotKey(脚本)
   * NetBalancer(用于限制网络流量)
 
+### 常量
+  * 'timeLimit':自动重新连接的最大等待时间,默认为120秒
+
 ### 热键
   * C:限制上传/网络重置
   * X:限制下载/网络重置
@@ -20,7 +23,7 @@ lag switch for Dead By Daylight(works for other softwares too). With both audito
   * NetBalancer(Control network traffic of game)
 
 ### Constant
-  * `timeLimit`:max time before re-connecting, default by 120 sec
+  * `timeLimit`:max time before auto-reconnecting, default by 120 sec
 ### Hotkeys
   * `C`:Limit upload/reset network
   * `X`:Limit download/reset network
